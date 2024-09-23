@@ -88,41 +88,7 @@ function promptForDeviceId() {
     location.reload(); // Reload the page to apply the new Device ID
 }
 
-// Service Worker registration
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-        .then(registration => {
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
 
-            // Check for updates
-            registration.onupdatefound = () => {
-                const installingWorker = registration.installing;
-                if (installingWorker) {
-                    installingWorker.onstatechange = () => {
-                        if (installingWorker.state === 'installed') {
-                            if (navigator.serviceWorker.controller) {
-                                // New update available
-                                console.log('New update available');
-                                if (confirm('New update available. Do you want to update now?')) {
-                                    installingWorker.postMessage({ action: 'skipWaiting' });
-                                }
-                            } else {
-                                // Content is cached for offline use
-                                console.log('Content is cached for offline use.');
-                            }
-                        }
-                    };
-                }
-            };
-        }).catch(error => {
-            console.log('ServiceWorker registration failed: ', error);
-        });
-
-    // Listen for the 'controllerchange' event to reload the page when the new service worker takes control
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-        window.location.reload();
-    });
-}
 
 // Initialize device ID check when the page loads
 document.addEventListener('DOMContentLoaded', initializeDeviceInfo);
