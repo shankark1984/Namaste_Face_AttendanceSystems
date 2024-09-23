@@ -2,7 +2,7 @@
     "name": "Namaste V2",
     "short_name": "Namaste",
     "start_url": "/index.html",
-    "display": "fullscreen",
+    "display": "standalone",
     "background": "linear-gradient(to right, #283048, #859398);",
     "theme_color": "#4CAF50",
     "description": "Namaste Wep App for Face Attendance System.",
