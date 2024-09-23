@@ -1,6 +1,6 @@
-const CACHE_NAME = 'my-cache-v152';
+const CACHE_NAME = 'my-cache-v153';
 const urlsToCache = [
-    '/',
+    '/*',
     '/styles.css',
     '/face_registration.js',
     '/face_registration.html',
