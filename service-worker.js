@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-cache-v1.01';
+const CACHE_NAME = 'my-cache-v1.03';
 const urlsToCache = [
     '/',
     '/styles.css',
@@ -47,3 +47,4 @@ self.addEventListener('fetch', event => {
             })
     );
 });
+
