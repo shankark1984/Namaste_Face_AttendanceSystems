@@ -67,10 +67,10 @@ const validateDevice = async deviceId => {
         return false;
         
     } else if (device_NoofDevice < device_NoofActive) {
-        console.log();
+        console.log('1');
         return false;
     } else if (device_Status='Used'){
-        console.log();
+        console.log('2');
 
     }
 

@@ -1,5 +1,6 @@
 /* Base styles */
 body {
+
     background: linear-gradient(to right, #d53369, #cbad6d);
     font-family: Arial, sans-serif;
     margin: 0;
@@ -14,10 +15,11 @@ body {
     max-width: 600px;
     width: 100%;
     height: auto; /* Set height to auto to adapt to the content */
-    padding: 20px;
+    padding: 5px;
     box-sizing: border-box;
-    background: radial-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);
-    border-radius: 8px;
+    background-color: #0056b3;
+    /* background: radial-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb); */
+    border-radius: 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -27,10 +29,12 @@ h1 {
 }
 
 #video-container {
+    margin-top: 8px;
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio for responsiveness */
-    margin-bottom: 20px;
+    height: 73vh; /* Set height to 80% of the viewport height */
+    margin-bottom: 1px;
+    border-radius: 25px;
 }
 
 #video, #overlay {
@@ -38,19 +42,26 @@ h1 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 100%; /* Fill the container */
+    object-fit: cover; /* Maintain aspect ratio while covering */
+    border-radius: 25px;
 }
 
 #overlay {
+    /* display: none;  */
+    /* Hide the canvas */
     pointer-events: none;
     z-index: 10;
 }
-
+span{
+    color: white;
+    text-align: center;
+}
 .form-group {
     display: flex;
     gap: 10px; /* Add space between the inputs */
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 2px;
 }
 
 #EmpCode, #EmpName {
@@ -59,7 +70,7 @@ h1 {
 
 input[type="text"] {
     padding: 8px;
-    font-size: 16px;
+    font-size: 1rem; /* Use rem for responsiveness */
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -72,7 +83,7 @@ form {
 
 button[type="submit"] {
     padding: 10px;
-    font-size: 16px;
+    font-size: 1rem; /* Use rem for consistency */
     border: none;
     border-radius: 4px;
     background-color: #007bff;
@@ -87,28 +98,21 @@ button[type="submit"]:hover {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    #video-container {
-        padding-top: 56.25%; /* Keep 16:9 Aspect Ratio */
-        height: auto;
-    }
     .container {
-        height: auto; /* Adjust height to auto for smaller screens */
         width: 100%;
+        height: auto; /* Allow the container to adjust */
     }
 }
 
 @media (max-width: 480px) {
     input[type="text"], button[type="submit"] {
-        font-size: 14px;
+        font-size: 0.875rem; /* Smaller font size for smaller screens */
         padding: 8px;
     }
 
-    #video-container {
-        padding-top: 56.25%; /* Maintain 16:9 Aspect Ratio */
-    }
     .container {
-        height: auto; /* Adjust height to fit content */
         width: 100%;
+        height: auto; /* Allow the container to adjust */
     }
 }
 

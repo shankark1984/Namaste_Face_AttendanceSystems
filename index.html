@@ -20,13 +20,13 @@
                 <input type="text" id="EmpCode" name="EmpCode" required placeholder="Employee Code">
                 <input type="text" id="EmpName" name="EmpName" required placeholder="Employee Name">
             </div>
-            <input type="text" id="AttendanceDateTime" name="AttendanceDateTime" placeholder="Attendance DateTime"
-                readonly>
-            <button id="attendanceBtn" type="submit" style="visibility: hidden;">Login</button>
+            <input type="text" id="AttendanceDateTime" name="AttendanceDateTime" placeholder="Attendance DateTime" readonly>
             <span>AllEdge Soft & Logic (OPC) Pvt. Ltd., All rights reserved</span>
+            <button id="attendanceBtn" type="submit" style="visibility: hidden; height: 0px;">Login</button>
+            
         </form>
+        <button id="install-button" style="display: none;">Install App</button> <!-- Added install button -->
     </div>
-    
 
     <!-- JavaScript Libraries for face recognition and attendance -->
     <script defer src="face-api.js"></script>
@@ -37,20 +37,16 @@
         let deferredPrompt;
 
         window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the mini info bar from appearing on mobile
             e.preventDefault();
-            // Stash the event so it can be triggered later.
             deferredPrompt = e;
-            // Show your custom install button
+
             const installButton = document.getElementById('install-button');
             installButton.style.display = 'block';
 
             installButton.addEventListener('click', () => {
-                // Hide the button
                 installButton.style.display = 'none';
-                // Show the install prompt
                 deferredPrompt.prompt();
-                // Wait for the user to respond to the prompt
+
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
                         console.log('User accepted the A2HS prompt');
@@ -64,26 +60,26 @@
 
         // Register service worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js').then(registration => {
-                console.log('Service Worker registered with scope:', registration.scope);
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
 
-                registration.onupdatefound = () => {
-                    const installingWorker = registration.installing;
-                    installingWorker.onstatechange = () => {
-                        if (installingWorker.state === 'installed') {
-                            if (navigator.serviceWorker.controller) {
-                                // New update available
-                                console.log('New content is available; please refresh.');
-                                // Optionally, notify the user or auto-refresh
-                            } else {
-                                console.log('Content is cached for offline use.');
+                    registration.onupdatefound = () => {
+                        const installingWorker = registration.installing;
+                        installingWorker.onstatechange = () => {
+                            if (installingWorker.state === 'installed') {
+                                if (navigator.serviceWorker.controller) {
+                                    console.log('New content is available; please refresh.');
+                                } else {
+                                    console.log('Content is cached for offline use.');
+                                }
                             }
-                        }
+                        };
                     };
-                };
-            }).catch(error => {
-                console.error('Service Worker registration failed:', error);
-            });
+                })
+                .catch(error => {
+                    console.error('Service Worker registration failed:', error);
+                });
         }
     </script>
 </body>
