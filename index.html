@@ -16,12 +16,16 @@
             <canvas id="overlay"></canvas>
         </div>
         <form id="attendanceForm">
-            <input type="text" id="EmpCode" name="EmpCode" required placeholder="Employee Code">
-            <input type="text" id="EmpName" name="EmpName" required placeholder="Employee Name">
-            <input type="text" id="AttendanceDateTime" name="AttendanceDateTime" placeholder="Attendance DateTime" readonly>
+            <div class="form-group">
+                <input type="text" id="EmpCode" name="EmpCode" required placeholder="Employee Code">
+                <input type="text" id="EmpName" name="EmpName" required placeholder="Employee Name">
+            </div>
+            <input type="text" id="AttendanceDateTime" name="AttendanceDateTime" placeholder="Attendance DateTime"
+                readonly>
             <button id="attendanceBtn" type="submit" style="visibility: hidden;">Login</button>
         </form>
     </div>
+    <span>@AllEdge Soft & Logic Pvt Ltd</span>
 
     <!-- JavaScript Libraries for face recognition and attendance -->
     <script defer src="face-api.js"></script>
@@ -30,7 +34,7 @@
 
     <script>
         let deferredPrompt;
-    
+
         window.addEventListener('beforeinstallprompt', (e) => {
             // Prevent the mini info bar from appearing on mobile
             e.preventDefault();
@@ -39,7 +43,7 @@
             // Show your custom install button
             const installButton = document.getElementById('install-button');
             installButton.style.display = 'block';
-    
+
             installButton.addEventListener('click', () => {
                 // Hide the button
                 installButton.style.display = 'none';
@@ -56,12 +60,12 @@
                 });
             });
         });
-    
+
         // Register service worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js').then(registration => {
                 console.log('Service Worker registered with scope:', registration.scope);
-    
+
                 registration.onupdatefound = () => {
                     const installingWorker = registration.installing;
                     installingWorker.onstatechange = () => {

@@ -13,7 +13,7 @@ body {
 .container {
     max-width: 600px;
     width: 100%;
-    height: 100%;
+    height: auto; /* Set height to auto to adapt to the content */
     padding: 20px;
     box-sizing: border-box;
     background: radial-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);
@@ -23,15 +23,13 @@ body {
 
 h1 {
     text-align: center;
-    margin-bottom: 2px;
-    margin-top: 0;
+    margin: 0 0 20px 0; /* Ensure proper space between the heading and other elements */
 }
 
 #video-container {
     position: relative;
     width: 100%;
-    height: 70%;
-    padding-top: 10%; /* 4:3 Aspect Ratio */
+    padding-top: 56.25%; /* 16:9 Aspect Ratio for responsiveness */
     margin-bottom: 20px;
 }
 
@@ -49,17 +47,27 @@ h1 {
     z-index: 10;
 }
 
-form {
+.form-group {
     display: flex;
-    flex-direction: column;
-    gap: 10px; /* Adjusted to a positive gap for proper spacing */
+    gap: 10px; /* Add space between the inputs */
+    margin-bottom: 10px;
+}
+
+#EmpCode, #EmpName {
+    flex: 1; /* Make the input fields equal width */
 }
 
 input[type="text"] {
-    padding: 10px;
+    padding: 8px;
     font-size: 16px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adjusted for proper spacing between form elements */
 }
 
 button[type="submit"] {
@@ -80,11 +88,11 @@ button[type="submit"]:hover {
 /* Responsive Styles */
 @media (max-width: 768px) {
     #video-container {
-        padding-top: 0; /* 16:9 Aspect Ratio */
-        height: 70%;
+        padding-top: 56.25%; /* Keep 16:9 Aspect Ratio */
+        height: auto;
     }
-    .container{
-        height: 100%;
+    .container {
+        height: auto; /* Adjust height to auto for smaller screens */
         width: 100%;
     }
 }
@@ -96,11 +104,10 @@ button[type="submit"]:hover {
     }
 
     #video-container {
-        padding-top: 0%; /* 4:3 Aspect Ratio */
-        height: 70%;
+        padding-top: 56.25%; /* Maintain 16:9 Aspect Ratio */
     }
-    .container{
-        height: 100%;
+    .container {
+        height: auto; /* Adjust height to fit content */
         width: 100%;
     }
 }
@@ -116,7 +123,7 @@ button[type="submit"]:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100; /* Added z-index to ensure it appears above other elements */
+    z-index: 100; /* Ensures it appears above other elements */
 }
 
 .prompt-content {
@@ -124,4 +131,7 @@ button[type="submit"]:hover {
     padding: 20px;
     border-radius: 5px;
     text-align: center;
+    max-width: 300px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
