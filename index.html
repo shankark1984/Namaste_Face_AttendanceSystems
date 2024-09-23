@@ -27,6 +27,60 @@
     <script defer src="face-api.js"></script>
     <script defer src="attendanceApp.js"></script>
     <script defer src="deviceauth.js"></script>
+
+    <script>
+        let deferredPrompt;
+    
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini info bar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later.
+            deferredPrompt = e;
+            // Show your custom install button
+            const installButton = document.getElementById('install-button');
+            installButton.style.display = 'block';
+    
+            installButton.addEventListener('click', () => {
+                // Hide the button
+                installButton.style.display = 'none';
+                // Show the install prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the A2HS prompt');
+                    } else {
+                        console.log('User dismissed the A2HS prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            });
+        });
+    
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js').then(registration => {
+                console.log('Service Worker registered with scope:', registration.scope);
+    
+                registration.onupdatefound = () => {
+                    const installingWorker = registration.installing;
+                    installingWorker.onstatechange = () => {
+                        if (installingWorker.state === 'installed') {
+                            if (navigator.serviceWorker.controller) {
+                                // New update available
+                                console.log('New content is available; please refresh.');
+                                // Optionally, notify the user or auto-refresh
+                            } else {
+                                console.log('Content is cached for offline use.');
+                            }
+                        }
+                    };
+                };
+            }).catch(error => {
+                console.error('Service Worker registration failed:', error);
+            });
+        }
+    </script>
 </body>
 
 </html>

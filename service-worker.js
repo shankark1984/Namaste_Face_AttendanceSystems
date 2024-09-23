@@ -5,11 +5,10 @@ const urlsToCache = [
     '/face_registration.js',
     '/face_registration.html',
     '/attendanceApp.js',
-    // '/userattendance.html',
     '/index.html',
-    // Add other files to cache
     '/face-api.js',
     '/deviceauth.js',
+    '/manifest.json',
 ];
 
 self.addEventListener('install', event => {
@@ -33,7 +32,7 @@ self.addEventListener('activate', event => {
                         return caches.delete(cacheName);
                     }
                 })
-            );
+            ).then(() => self.clients.claim()); // Ensure the new service worker takes control
         })
     );
 });
