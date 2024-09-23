@@ -1,4 +1,4 @@
-const CACHE_NAME = 'Namaste_version_V2.00.01';
+const CACHE_NAME = 'Namaste_version_V2.00.02';
 const urlsToCache = [
     '/',
     '/styles.css',
