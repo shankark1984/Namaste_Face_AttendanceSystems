@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Face Registration</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Face Registration</h1>
+        <div id="video-container">
+            <video id="video" autoplay muted></video>
+            <canvas id="overlay"></canvas>
+        </div>
+        <form id="registrationForm">
+            <input type="text" id="EmpCode" name="EmpCode" required placeholder="Employee Code">
+            <input type="text" id="EmpName" name="EmpName" required placeholder="Employee Name">
+            <input type="text" id="EmpStatus" name="EmpStatus" required placeholder="Employee Status">
+            <button type="submit">Register Face</button>
+        </form>
+    </div>
+
+    <script defer src="face-api.js"></script>
+    <script defer src="face_registration.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            startVideo();
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            await registerFace();
+        });
+    </script>
+</body>
+
+</html>
