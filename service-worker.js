@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-cache-v154';
+const CACHE_NAME = 'my-cache-v155';
 const urlsToCache = [
     '/*',
     '/styles.css',
@@ -6,7 +6,6 @@ const urlsToCache = [
     '/face_registration.html',
     '/attendanceApp.js',
     '/index.html',
-    '/face-api.js',
     '/deviceauth.js',
     '/manifest.json',
 ];
